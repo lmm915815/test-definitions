@@ -17,6 +17,7 @@ outDebugInfo
 
 hive_start_hadoop 
 hive_install 
+exit 
 hive_init
 hive_base_client_command
 

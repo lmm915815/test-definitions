@@ -8,14 +8,14 @@ cd ../../../../utils
 cd -
 
 outDebugInfo
-version=`python -V`
-if [ $version > 2 && $version < 3 ];then
-	print_info 0 python-version
-else
-	install_deps python
-	python -V
-	print_info $? python-version
-fi
+#version=`python -V`
+#if [ $version > 2 && $version < 3 ];then
+#	print_info 0 python-version
+#else
+#	install_deps python
+#	python -V
+#	print_info $? python-version
+#fi
 
 
 pkgs="tensorflow"
@@ -38,7 +38,14 @@ print_info $? upgrade-pip
 whl=`ls /usr/share/tensorflow`
 cd /usr/share/tensorflow
 pip install $whl
-print_info $? pip-install-whl
+ret=$?
+print_info $ret pip-install-tensorflow_python_package
+if [ $ret -ne 0  ];then
+    echo 
+    echo "network error or check source file"
+    echo 
+    exit 1
+fi 
 
 #hello to check pip install tensorflow
 cd -
